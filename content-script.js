@@ -2,6 +2,8 @@ $(function() {
     const TWEET_CONTAINER = 'div.stream ol#stream-items-id li.stream-item[data-item-type="tweet"] div.tweet';
     const TWEET_FOOTER = '.content .stream-item-footer .ProfileTweet-actionList';
 
+    var cnbOpenTweetId = null;
+
     var twitterIntervalID = null;
     setAddCNBButtonInterval();
 
@@ -44,4 +46,57 @@ $(function() {
 
         return $(str);
     }
+
+    function giveContext() {
+        let str =
+            '<div class="news-card-tag">' +
+            '<div class="card news-card card-1">' +
+            '<div class="card-section">' +
+            '<article class="news-card-article">' +
+            '<em class="news-card-date">Sunday, 16th April</em>' +
+            '<h3 class="news-card-title">Title for the First Article</h3> ' +
+            '<p class="news-card-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae facere, ipsam quae sit, eaque perferendis commodi!...</p>' +
+            '<p><a href="#">Continue reading</a></p>' +
+            '</article>' +
+            '</div>' +
+            '</div>' +
+            '<div class="card news-card card-2">' +
+            '<div class="card-section">' +
+            '<article class="news-card-article ">' +
+            '<em class="news-card-date">Tuesday, 8th December</em>' +
+            '<h3 class="news-card-title">Title for the Second Article</h3> ' +
+            '<p class="news-card-description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur....</p>' +
+            '<p><a href="#">Continue reading</a></p>' +
+            '</article>' +
+            '</div>' +
+            '</div>' +
+            '<div class="card news-card card-3">' +
+            '<div class="card-section">' +
+            '<article class="news-card-article">' +
+            '<em class="news-card-date">Sunday, 28th January</em>' +
+            '<h3 class="news-card-title">Title for the Third Article</h3> ' +
+            '<p class="news-card-description">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?...</p>' +
+            '<p><a href="#">Continue reading</a></p>' +
+            '</article>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>  ';
+
+        $(str).appendTo($('.cnb-btn-inserted')).attr("data-tweet-id", cnbOpenTweetId);
+    }
+
+    $("div.ProfileTweet-action--CNB > button.ProfileTweet-actionButton.js-actionButton").click(function() {
+        if (cnbOpenTweetId == null) {
+            cnbOpenTweetId = $(this).attr('data-tweet-id').toString();
+            giveContext();
+        } else {
+            $('').parent.remove('.news-card-tag'); // TODO
+            cnbOpenTweetId = null;
+            if ($(this).attr('data-tweet-id').toString() != cnbOpenTweetId) {
+                cnbOpenTweetId = $(this).attr('data-tweet-id').toString();
+                giveContext();
+            }
+        }
+    });
 });

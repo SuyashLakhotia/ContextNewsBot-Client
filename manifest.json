@@ -6,7 +6,7 @@
     "permissions": ["http://*.twitter.com/*", "https://*.twitter.com/*"],
     "content_scripts": [{
         "matches": ["http://*.twitter.com/*", "https://*.twitter.com/*"],
-        "css": ["stylesheet.css"],
+        "css": ["stylesheet.css", "news-stylesheet.css"],
         "js": ["jquery.min.js", "content-script.js"]
     }],
     "web_accessible_resources": ["newspaper.svg"]
