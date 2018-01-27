@@ -3,9 +3,9 @@
     "description": "[DEV] This application provides more context to tweets, allowing the user to see a broader perspective.",
     "version": "1.0",
     "manifest_version": 2,
-    "permissions": ["http://*.twitter.com/*", "https://*.twitter.com/*"],
+    "permissions": ["*://*.twitter.com/*", "http://127.0.0.1/*"],
     "content_scripts": [{
-        "matches": ["http://*.twitter.com/*", "https://*.twitter.com/*"],
+        "matches": ["*://*.twitter.com/*"],
         "css": ["stylesheet.css", "news-stylesheet.css"],
         "js": ["jquery.min.js", "content-script.js"]
     }],
