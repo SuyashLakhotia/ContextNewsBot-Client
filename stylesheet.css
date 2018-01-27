@@ -1,0 +1,6 @@
+.ProfileTweet-actionList .Icon.Icon--CNB {
+    width: 16px;
+    height: 18px;
+    background: url('chrome-extension://__MSG_@@extension_id__/newspaper.svg') no-repeat center center;
+    background-size: 15px 15px;
+}
