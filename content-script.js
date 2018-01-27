@@ -2,10 +2,10 @@ $(function() {
     const TWEET_CONTAINER = 'div.stream ol#stream-items-id li.stream-item[data-item-type="tweet"] div.tweet';
     const TWEET_FOOTER = '.content .stream-item-footer .ProfileTweet-actionList';
 
-    var cnbOpenTweetId = null;
-
     var twitterIntervalID = null;
     setAddCNBButtonInterval();
+
+    var cnbOpenTweetID = null;
 
     function addCNBToTweets() {
         let $tweets = $(TWEET_CONTAINER).not('.cnb-btn-inserted');
@@ -44,10 +44,13 @@ $(function() {
             '</button>' +
             '</div>';
 
-        return $(str);
+        let $el = $(str);
+        $el.find('button.js-actionButton').off('click').on('click', buttonListener);
+
+        return $el;
     }
 
-    function giveContext() {
+    function createContextPanel() {
         let str =
             '<div class="news-card-tag">' +
             '<div class="card news-card card-1">' +
@@ -81,22 +84,30 @@ $(function() {
             '</div>' +
             '</div>' +
             '</div>' +
-            '</div>  ';
+            '</div>';
 
-        $(str).appendTo($('.cnb-btn-inserted')).attr("data-tweet-id", cnbOpenTweetId);
+        return $(str);
     }
 
-    $("div.ProfileTweet-action--CNB > button.ProfileTweet-actionButton.js-actionButton").click(function() {
-        if (cnbOpenTweetId == null) {
-            cnbOpenTweetId = $(this).attr('data-tweet-id').toString();
-            giveContext();
+    function buttonListener() {
+        let $this = $(this);
+        let btnTweetID = $this.attr('data-tweet-id');
+
+        if (cnbOpenTweetID == null) {
+            let $el = createContextPanel();
+            $('div.tweet[data-tweet-id="' + btnTweetID + '"').append($el);
+            cnbOpenTweetID = btnTweetID;
         } else {
-            $('').parent.remove('.news-card-tag'); // TODO
-            cnbOpenTweetId = null;
-            if ($(this).attr('data-tweet-id').toString() != cnbOpenTweetId) {
-                cnbOpenTweetId = $(this).attr('data-tweet-id').toString();
-                giveContext();
+            $('div.tweet[data-tweet-id="' + cnbOpenTweetID + '"').find('.news-card-tag').remove();
+            if (btnTweetID != cnbOpenTweetID) {
+                let $el = createContextPanel();
+                $('div.tweet[data-tweet-id="' + btnTweetID + '"').append($el);
+                cnbOpenTweetID = btnTweetID;
+            } else {
+                cnbOpenTweetID = null;
             }
         }
-    });
+
+        console.log(cnbOpenTweetID);
+    }
 });
