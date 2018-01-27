@@ -107,7 +107,5 @@ $(function() {
                 cnbOpenTweetID = null;
             }
         }
-
-        console.log(cnbOpenTweetID);
     }
 });
