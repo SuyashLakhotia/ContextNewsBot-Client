@@ -55,6 +55,9 @@ $(function() {
     }
 
     function createContextPanel(tweetID) {
+        let $el = $('<h4 class="cnb-loading-text">Loading...</h4>');
+        $('div.tweet[data-tweet-id="' + tweetID + '"').append($el);
+
         getDataForTweet(tweetID).then((data) => {
             console.log(data);
             let str = '<div class="news-card-tag">';
@@ -73,6 +76,7 @@ $(function() {
 
             let $el = $(str);
             $('div.tweet[data-tweet-id="' + tweetID + '"').append($el);
+            $('div.tweet[data-tweet-id="' + tweetID + '"').find('.cnb-loading-text').remove();
             cnbOpenTweetID = tweetID;
         });
     }

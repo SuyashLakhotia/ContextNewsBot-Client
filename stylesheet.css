@@ -4,3 +4,11 @@
     background: url('chrome-extension://__MSG_@@extension_id__/newspaper.svg') no-repeat center center;
     background-size: 15px 15px;
 }
+
+.cnb-loading-text {
+    text-align: center;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: #66757f;
+}
