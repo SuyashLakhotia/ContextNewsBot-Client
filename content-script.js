@@ -61,7 +61,7 @@ $(function() {
         getDataForTweet(tweetID).then((data) => {
             console.log(data);
 
-            let str = '<div class="news-card-tag">';
+            let str = '<div class="news-card-container">';
             for (const [i, datum] of data['relevant_articles'].entries()) {
                 let datePublished = new Date(datum['publishedAt']);
                 str += '<div class="card news-card card-' + i + '">';
@@ -120,7 +120,7 @@ $(function() {
         if (cnbOpenTweetID == null) {
             createContextPanel(btnTweetID);
         } else {
-            $('div.tweet[data-tweet-id="' + cnbOpenTweetID + '"]').find('.news-card-tag').remove();
+            $('div.tweet[data-tweet-id="' + cnbOpenTweetID + '"]').find('.news-card-container').remove();
             if (btnTweetID != cnbOpenTweetID) {
                 createContextPanel(btnTweetID);
             } else {
