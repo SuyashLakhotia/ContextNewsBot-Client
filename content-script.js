@@ -71,6 +71,14 @@ $(function() {
                 str += '<h3 class="news-card-title">' + datum['title'] + '</h3>';
                 str += '<p class="news-card-description">' + datum['description'] + '</p>';
                 str += '<p><a href="' + datum['url'] + '">Continue reading on ' + datum['source']['name'] + ' </a></p>';
+
+                let colorClass = 'orange';
+                if (datum['sentiment_score'] > 0)
+                    colorClass = 'green'
+                else if (datum['sentiment_score'] < 0)
+                    colorClass = 'red'
+                str += '<div class="sentiment-circle ' + colorClass + '"></div>';
+
                 str += '</article>' + '</div>' + '</div>';
             }
 
