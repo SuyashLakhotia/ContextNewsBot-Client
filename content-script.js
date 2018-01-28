@@ -69,7 +69,7 @@ $(function() {
                 str += '<em class="news-card-date">' + DAYS[datePublished.getDay()] + ', ' + datePublished.getDate() + ' ' + MONTHS[datePublished.getMonth()] + '</em>';
                 str += '<h3 class="news-card-title">' + datum['title'] + '</h3>';
                 str += '<p class="news-card-description">' + datum['description'] + '</p>';
-                str += '<p><a href="' + datum['url'] + '">Continue reading</a></p>';
+                str += '<p><a href="' + datum['url'] + '">Continue reading on ' + datum['source']['name'] + ' </a></p>';
                 str += '</article>' + '</div>' + '</div>'
             }
             str += '</div>' + '</div>';
