@@ -9,7 +9,7 @@
         "css": ["stylesheet.css", "news-stylesheet.css"],
         "js": ["jquery.min.js", "content-script.js"]
     }],
-    "web_accessible_resources": ["newspaper.svg"],
+    "web_accessible_resources": ["newspaper.svg", "wikipedia-logo.png"],
     "icons": {
         "128": "newspaper.png"
     },

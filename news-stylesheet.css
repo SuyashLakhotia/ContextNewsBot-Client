@@ -40,3 +40,14 @@
   color: #8a8a8a;
   margin-bottom: 0.6rem;
 }
+
+.wikipedia-tag .keyword {
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  margin-right: 10px;
+}
+
+.wikipedia-logo {
+  height: 20px;
+}

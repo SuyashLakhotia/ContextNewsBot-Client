@@ -72,6 +72,17 @@ $(function() {
                 str += '<p><a href="' + datum['url'] + '">Continue reading on ' + datum['source']['name'] + ' </a></p>';
                 str += '</article>' + '</div>' + '</div>'
             }
+            
+            let wikiLinks = {}; // TODO add wiki source
+
+            for (const [i, wiki] of wikiLinks.entries()) {
+                str += '<div class="wikipedia-tag">';
+                str += '<div class="keyword keyword-' + i + '">';
+                str += '<img class = "wikipedia-logo" src = "./wikipedia-logo.png" />';
+                str += '<a href = "' + wiki['url'] +'">' + wiki['title'] + ' </a>';
+                str += '</div>' + '</div>';
+            }
+
             str += '</div>' + '</div>';
 
             let $el = $(str);
