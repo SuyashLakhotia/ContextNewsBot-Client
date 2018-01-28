@@ -60,8 +60,9 @@ $(function() {
 
         getDataForTweet(tweetID).then((data) => {
             console.log(data);
+
             let str = '<div class="news-card-tag">';
-            for (const [i, datum] of data.entries()) {
+            for (const [i, datum] of data['relevant_articles'].entries()) {
                 let datePublished = new Date(datum['publishedAt']);
                 str += '<div class="card news-card card-' + i + '">';
                 str += '<div class="card-section">';
@@ -72,17 +73,13 @@ $(function() {
                 str += '<p><a href="' + datum['url'] + '">Continue reading on ' + datum['source']['name'] + ' </a></p>';
                 str += '</article>' + '</div>' + '</div>';
             }
-            
-            let wikiLinks = {}; // TODO add wiki source
 
-            for (const [i, wiki] of wikiLinks.entries()) {
+            for (const [i, wiki] of data['wiki_urls'].entries()) {
                 str += '<div class="wikipedia-tag">';
                 str += '<div class="keyword keyword-' + i + '">';
-                str += '<img class = "wikipedia-logo" src = "./wikipedia-logo.png" />';
-                str += '<a href = "' + wiki['url'] +'">' + wiki['title'] + ' </a>';
+                str += '<a href="' + wiki['wiki_url'] + '">' + wiki['entity_name'] + ' [Wikipedia]</a>';
                 str += '</div>' + '</div>';
             }
-
             str += '</div>' + '</div>';
 
             let $el = $(str);
