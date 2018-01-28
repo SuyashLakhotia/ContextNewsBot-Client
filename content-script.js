@@ -56,7 +56,7 @@ $(function() {
 
     function createContextPanel(tweetID) {
         let $el = $('<h4 class="cnb-loading-text">Loading...</h4>');
-        $('div.tweet[data-tweet-id="' + tweetID + '"').append($el);
+        $('div.tweet[data-tweet-id="' + tweetID + '"]').append($el);
 
         getDataForTweet(tweetID).then((data) => {
             console.log(data);
@@ -70,7 +70,7 @@ $(function() {
                 str += '<h3 class="news-card-title">' + datum['title'] + '</h3>';
                 str += '<p class="news-card-description">' + datum['description'] + '</p>';
                 str += '<p><a href="' + datum['url'] + '">Continue reading on ' + datum['source']['name'] + ' </a></p>';
-                str += '</article>' + '</div>' + '</div>'
+                str += '</article>' + '</div>' + '</div>';
             }
             
             let wikiLinks = {}; // TODO add wiki source
@@ -86,8 +86,8 @@ $(function() {
             str += '</div>' + '</div>';
 
             let $el = $(str);
-            $('div.tweet[data-tweet-id="' + tweetID + '"').append($el);
-            $('div.tweet[data-tweet-id="' + tweetID + '"').find('.cnb-loading-text').remove();
+            $('div.tweet[data-tweet-id="' + tweetID + '"]').append($el);
+            $('div.tweet[data-tweet-id="' + tweetID + '"]').find('.cnb-loading-text').remove();
             cnbOpenTweetID = tweetID;
         });
     }
@@ -115,7 +115,7 @@ $(function() {
         if (cnbOpenTweetID == null) {
             createContextPanel(btnTweetID);
         } else {
-            $('div.tweet[data-tweet-id="' + cnbOpenTweetID + '"').find('.news-card-tag').remove();
+            $('div.tweet[data-tweet-id="' + cnbOpenTweetID + '"]').find('.news-card-tag').remove();
             if (btnTweetID != cnbOpenTweetID) {
                 createContextPanel(btnTweetID);
             } else {
