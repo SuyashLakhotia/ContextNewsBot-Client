@@ -48,18 +48,26 @@ $(function() {
             '</button>' +
             '</div>';
 
-        let $el = $(str);
-        $el.find('button.js-actionButton').off('click').on('click', buttonListener);
+        let $button = $(str);
+        $button.find('button.js-actionButton').off('click').on('click', buttonListener);
 
-        return $el;
+        return $button;
     }
 
     function createContextPanel(tweetID) {
-        let $el = $('<h4 class="cnb-loading-text">Loading...</h4>');
-        $('div.tweet[data-tweet-id="' + tweetID + '"]').append($el);
+        let $tweet = $('div.tweet[data-tweet-id="' + tweetID + '"]');
+        
+        $tweet.find('.cnb-loading-text').remove();
+        let $loadingElement = $('<h4 class="cnb-loading-text">Loading...</h4>');
+        $tweet.append($loadingElement);
 
         getDataForTweet(tweetID).then((data) => {
             console.log(data);
+
+            if (data['relevant_articles'].length == 0 && data['wiki_urls'].length == 0) {
+                $tweet.find('.cnb-loading-text').text('No relevant articles found!');
+                return;
+            }
 
             let str = '<div class="news-card-container">';
             for (const [i, datum] of data['relevant_articles'].entries()) {
@@ -88,11 +96,11 @@ $(function() {
                 str += '<a href="' + wiki['wiki_url'] + '">' + wiki['entity_name'] + ' [Wikipedia]</a>';
                 str += '</div>' + '</div>';
             }
-            str += '</div>' + '</div>';
+            str += '</div>';
 
-            let $el = $(str);
-            $('div.tweet[data-tweet-id="' + tweetID + '"]').append($el);
-            $('div.tweet[data-tweet-id="' + tweetID + '"]').find('.cnb-loading-text').remove();
+            let $contextPanel = $(str);
+            $tweet.append($contextPanel);
+            $tweet.find('.cnb-loading-text').remove();
             cnbOpenTweetID = tweetID;
         });
     }
